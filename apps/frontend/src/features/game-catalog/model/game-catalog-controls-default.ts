@@ -9,6 +9,18 @@ type AreGameCatalogControlsAtDefaultParams = {
   defaultSortOption: GameSortOption;
 };
 
+/**
+ * Compares two filter states for equality.
+ * Uses Object.keys to ensure all filter fields are checked.
+ */
+function areFiltersEqual(
+  a: GameFiltersState,
+  b: GameFiltersState,
+): boolean {
+  const keys = Object.keys(a) as Array<keyof GameFiltersState>;
+  return keys.every((key) => a[key] === b[key]);
+}
+
 export function areGameCatalogControlsAtDefault({
   filters,
   searchQuery,
@@ -18,10 +30,7 @@ export function areGameCatalogControlsAtDefault({
 }: AreGameCatalogControlsAtDefaultParams): boolean {
   const isSearchDefault = searchQuery.trim() === "";
   const isSortDefault = sortOption === defaultSortOption;
-  const areFiltersDefault =
-    filters.genre === defaultFilters.genre &&
-    filters.players === defaultFilters.players &&
-    filters.difficulty === defaultFilters.difficulty;
+  const areFiltersDefault = areFiltersEqual(filters, defaultFilters);
 
   return isSearchDefault && isSortDefault && areFiltersDefault;
 }

@@ -49,7 +49,7 @@ export function GameFiltersSidebar({
             key={section.id}
             section={section}
             value={filters[section.id as keyof GameFiltersState]}
-            onChange={(sectionId, value) =>
+            onChange={(sectionId: string, value: SidebarFilterValue) =>
               onChange(sectionId as keyof GameFiltersState, value)
             }
           />
