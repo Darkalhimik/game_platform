@@ -9,5 +9,8 @@
     "test": "pnpm -r test",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck"
+  },
+  "dependencies": {
+    "lucide-react": "^0.577.0"
   }
 }
