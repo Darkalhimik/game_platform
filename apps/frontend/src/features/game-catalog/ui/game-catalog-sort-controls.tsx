@@ -2,21 +2,7 @@
 
 import { ArrowUpDown } from "lucide-react";
 import { isGameSortOption, type GameSortOption } from "@/game-system/search";
-
-type SortOptionItem = {
-  value: GameSortOption;
-  label: string;
-};
-
-const sortOptions: readonly SortOptionItem[] = [
-  { value: "title-asc", label: "Name (A-Z)" },
-  { value: "title-desc", label: "Name (Z-A)" },
-  { value: "genre-asc", label: "Genre (A-Z)" },
-  { value: "players-asc", label: "Players (Low to High)" },
-  { value: "players-desc", label: "Players (High to Low)" },
-  { value: "difficulty-asc", label: "Difficulty (Easy to Hard)" },
-  { value: "difficulty-desc", label: "Difficulty (Hard to Easy)" },
-];
+import { sortOptionsConfig } from "@/shared/config";
 
 type GameCatalogSortControlsProps = {
   value: GameSortOption;
@@ -52,7 +38,7 @@ export function GameCatalogSortControls({
           onChange={handleChange}
           className="w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-10 text-sm font-medium text-white/90 shadow-sm backdrop-blur-sm outline-none transition-all hover:border-white/20 hover:bg-white/8 focus:border-white/25 focus:bg-white/10 focus:ring-2 focus:ring-white/10"
         >
-          {sortOptions.map((option) => (
+          {sortOptionsConfig.map((option) => (
             <option key={option.value} value={option.value} className="bg-gray-900 text-white">
               {option.label}
             </option>

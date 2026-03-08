@@ -1,4 +1,5 @@
 import type { GameFiltersState } from "@/game-system/filters";
+import { formatGenre, playersLabels } from "@/shared/config";
 
 type GameCatalogActiveFiltersSummaryProps = {
   filters: GameFiltersState;
@@ -6,21 +7,14 @@ type GameCatalogActiveFiltersSummaryProps = {
   defaultDifficulty: number;
 };
 
-const playersLabelByValue: Record<Exclude<GameFiltersState["players"], null>, string> = {
-  "1": "1 player",
-  "2": "2 players",
-  "3plus": "3+ players",
-};
-
-function capitalize(value: string): string {
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}
-
-export function GameCatalogActiveFiltersSummary({
-  filters,
-  searchQuery,
-  defaultDifficulty,
-}: GameCatalogActiveFiltersSummaryProps) {
+/**
+ * Builds the list of active filter descriptions for display
+ */
+function buildActiveFilterItems(
+  filters: GameFiltersState,
+  searchQuery: string,
+  defaultDifficulty: number,
+): string[] {
   const activeItems: string[] = [];
   const trimmedQuery = searchQuery.trim();
 
@@ -29,16 +23,26 @@ export function GameCatalogActiveFiltersSummary({
   }
 
   if (filters.genre !== null) {
-    activeItems.push(`Genre: ${capitalize(filters.genre)}`);
+    activeItems.push(`Genre: ${formatGenre(filters.genre)}`);
   }
 
   if (filters.players !== null) {
-    activeItems.push(`Players: ${playersLabelByValue[filters.players]}`);
+    activeItems.push(`Players: ${playersLabels[filters.players]}`);
   }
 
   if (filters.difficulty !== defaultDifficulty) {
     activeItems.push(`Difficulty: up to ${filters.difficulty}`);
   }
+
+  return activeItems;
+}
+
+export function GameCatalogActiveFiltersSummary({
+  filters,
+  searchQuery,
+  defaultDifficulty,
+}: GameCatalogActiveFiltersSummaryProps) {
+  const activeItems = buildActiveFilterItems(filters, searchQuery, defaultDifficulty);
 
   if (activeItems.length === 0) {
     return null;
