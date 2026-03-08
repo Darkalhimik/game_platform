@@ -1,5 +1,5 @@
 import { BarChart3, Gamepad2, LogIn, Settings } from "lucide-react";
-import { MenuCard } from "../../components/ui/menu-card";
+import { MenuCard } from "@/shared/ui";
 
 const menuItems = [
   {
@@ -23,7 +23,7 @@ const menuItems = [
   {
     title: "Authorization",
     description: "Sign in, create an account, and manage your access.",
-    href: "/authorization",
+    href: "/auth",
     icon: <LogIn className="h-6 w-6" />,
   },
 ];

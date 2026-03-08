@@ -1,8 +1,8 @@
-import { HomeMenu } from "../features/home/home-menu";
+import { HomeMenu } from "@/features/home";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.08),_transparent_35%),linear-gradient(to_bottom,_#111827,_#030712)] text-white">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_35%),linear-gradient(to_bottom,#111827,#030712)] text-white">
       <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-10 sm:px-6 lg:px-8">
         <section className="flex flex-1 flex-col justify-center">
           <div className="mx-auto w-full max-w-4xl">

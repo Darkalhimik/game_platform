@@ -3,7 +3,12 @@
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "rootDir": "src",
+    "ignoreDeprecations": "5.0",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "rootDir": ".",
     "outDir": "dist",
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -17,5 +22,5 @@
       }
     ]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx", ".next/types/**/*.ts"]
 }

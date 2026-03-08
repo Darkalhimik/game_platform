@@ -3,9 +3,37 @@ export type SidebarOption = {
   value: string;
 };
 
-export type SidebarSectionConfig = {
+type SidebarBaseSection = {
   id: string;
   title: string;
-  type: "chips" | "select" | "range";
-  options?: SidebarOption[];
 };
+
+export type SidebarChipsSection = SidebarBaseSection & {
+  type: "chips";
+  options: SidebarOption[];
+};
+
+export type SidebarSelectSection = SidebarBaseSection & {
+  type: "select";
+  options: SidebarOption[];
+  placeholder?: string;
+};
+
+export type SidebarRangeSection = SidebarBaseSection & {
+  type: "range";
+  min: number;
+  max: number;
+  step?: number;
+  defaultValue?: number;
+};
+
+export type SidebarSectionType = "chips" | "select" | "range";
+
+export type SidebarSectionConfig =
+  | SidebarChipsSection
+  | SidebarSelectSection
+  | SidebarRangeSection;
+
+export type SidebarFilterValue = string | number | null;
+
+export type SidebarFiltersState = Record<string, SidebarFilterValue>;
