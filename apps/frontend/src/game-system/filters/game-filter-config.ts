@@ -1,27 +1,33 @@
 import type { SidebarSectionConfig } from "@/shared/ui";
+import { genreLabels, playersLabels } from "@/shared/config";
+import type { GameGenre } from "@/entities";
+import type { GamePlayersFilter } from "./game-filter-types";
+
+// Build genre options from centralized display config
+const genreOptions = (Object.keys(genreLabels) as GameGenre[]).map((genre) => ({
+  label: genreLabels[genre],
+  value: genre,
+}));
+
+// Build players options from centralized display config
+const playersOptions = (Object.keys(playersLabels) as NonNullable<GamePlayersFilter>[]).map((players) => ({
+  label: playersLabels[players],
+  value: players,
+}));
 
 export const gameFilterSections: SidebarSectionConfig[] = [
   {
     id: "genre",
     title: "Genre",
     type: "chips",
-    options: [
-      { label: "Arcade", value: "arcade" },
-      { label: "Cards", value: "cards" },
-      { label: "Puzzle", value: "puzzle" },
-      { label: "Strategy", value: "strategy" },
-    ],
+    options: genreOptions,
   },
   {
     id: "players",
     title: "Players",
     type: "select",
     placeholder: "Choose players count",
-    options: [
-      { label: "1 Player", value: "1" },
-      { label: "2 Players", value: "2" },
-      { label: "3+ Players", value: "3plus" },
-    ],
+    options: playersOptions,
   },
   {
     id: "difficulty",

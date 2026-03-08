@@ -1,30 +1,21 @@
 import type { GameGenre } from "@/entities";
 import type { GamePlayersFilter } from "@/game-system/filters";
+import { genreLabels, playersLabels } from "@/shared/config";
 
 /**
  * Runtime list of allowed game genres.
- * 
- * IMPORTANT: Must be kept in sync with GameGenre type in @/entities/game/model/game-types.ts
- * If you add a new genre to the type, add it here too.
+ * Automatically derived from centralized display config.
  */
-export const allowedGameGenres: readonly GameGenre[] = [
-  "arcade",
-  "cards",
-  "puzzle",
-  "strategy",
-];
+export const allowedGameGenres: readonly GameGenre[] = Object.keys(
+  genreLabels,
+) as GameGenre[];
 
 /**
  * Runtime list of allowed player filter values.
- * 
- * IMPORTANT: Must be kept in sync with GamePlayersFilter type in @/game-system/filters
- * If you add a new player filter, add it here too.
+ * Automatically derived from centralized display config.
  */
-export const allowedGamePlayers: readonly NonNullable<GamePlayersFilter>[] = [
-  "1",
-  "2",
-  "3plus",
-];
+export const allowedGamePlayers: readonly NonNullable<GamePlayersFilter>[] =
+  Object.keys(playersLabels) as NonNullable<GamePlayersFilter>[];
 
 const allowedGameGenresSet = new Set<GameGenre>(allowedGameGenres);
 const allowedGamePlayersSet = new Set<NonNullable<GamePlayersFilter>>(

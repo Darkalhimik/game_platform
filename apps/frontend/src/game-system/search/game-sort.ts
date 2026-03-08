@@ -1,4 +1,5 @@
 import type { GameItem } from "@/entities";
+import { sortOptionsConfig } from "@/shared/config";
 
 export type GameSortOption =
   | "title-asc"
@@ -9,15 +10,13 @@ export type GameSortOption =
   | "difficulty-asc"
   | "difficulty-desc";
 
-const allowedSortOptions = new Set<GameSortOption>([
-  "title-asc",
-  "title-desc",
-  "genre-asc",
-  "players-asc",
-  "players-desc",
-  "difficulty-asc",
-  "difficulty-desc",
-]);
+/**
+ * Runtime set of allowed sort options.
+ * Automatically derived from centralized display config.
+ */
+const allowedSortOptions = new Set<GameSortOption>(
+  sortOptionsConfig.map((option) => option.value),
+);
 
 export function isGameSortOption(value: string): value is GameSortOption {
   return allowedSortOptions.has(value as GameSortOption);
