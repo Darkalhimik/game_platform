@@ -9,6 +9,20 @@ export type GameSortOption =
   | "difficulty-asc"
   | "difficulty-desc";
 
+const allowedSortOptions = new Set<GameSortOption>([
+  "title-asc",
+  "title-desc",
+  "genre-asc",
+  "players-asc",
+  "players-desc",
+  "difficulty-asc",
+  "difficulty-desc",
+]);
+
+export function isGameSortOption(value: string): value is GameSortOption {
+  return allowedSortOptions.has(value as GameSortOption);
+}
+
 function sortByText(
   left: string,
   right: string,

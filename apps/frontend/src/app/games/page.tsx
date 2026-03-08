@@ -4,18 +4,20 @@ import { useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { mockGameCatalog } from "@/entities";
 import {
+  GameFiltersSidebar,
+  initialGameFilters,
+  type GameFiltersState,
+} from "@/game-system/filters";
+import { type GameSortOption } from "@/game-system/search";
+import {
   areGameCatalogControlsAtDefault,
   GameCatalogActiveFiltersSummary,
   applyGameCatalogPipeline,
   GameCatalogGrid,
   GameCatalogSearch,
   GameCatalogSortControls,
-  GameFiltersSidebar,
   gamePageQuickNavItems,
-  initialGameFilters,
   updateGameFilters,
-  type GameFiltersState,
-  type GameSortOption,
 } from "@/features/game-catalog";
 import { IconNavButton, SidebarToggleButton } from "@/shared/ui";
 
@@ -32,7 +34,7 @@ export default function GamesPage() {
     sectionId: keyof GameFiltersState,
     value: string | number | null,
   ) {
-    setFilters((prev) => updateGameFilters(prev, sectionId, value));
+    setFilters((prev: GameFiltersState) => updateGameFilters(prev, sectionId, value));
   }
 
   function handleResetFilters() {
@@ -57,7 +59,7 @@ export default function GamesPage() {
     return applyGameCatalogPipeline({
       games: mockGameCatalog,
       filters,
-      query: searchQuery,
+      searchQuery,
       sortOption,
     });
   }, [filters, searchQuery, sortOption]);

@@ -1,44 +1,19 @@
-import { BarChart3, Gamepad2, LogIn, Settings } from "lucide-react";
-import { MenuCard } from "@/shared/ui";
+"use client";
 
-const menuItems = [
-  {
-    title: "Games",
-    description: "Browse available games and start playing solo or with others.",
-    href: "/games",
-    icon: <Gamepad2 className="h-6 w-6" />,
-  },
-  {
-    title: "Statistics",
-    description: "View play history, session data, and platform statistics.",
-    href: "/statistics",
-    icon: <BarChart3 className="h-6 w-6" />,
-  },
-  {
-    title: "Settings",
-    description: "Manage preferences, appearance, and platform configuration.",
-    href: "/settings",
-    icon: <Settings className="h-6 w-6" />,
-  },
-  {
-    title: "Authorization",
-    description: "Sign in, create an account, and manage your access.",
-    href: "/auth",
-    icon: <LogIn className="h-6 w-6" />,
-  },
-];
+import { mainNavigationItems } from "@/shared/config/navigation";
+import { MenuCard } from "@/shared/ui";
 
 export function HomeMenu() {
   return (
     <section className="w-full">
       <div className="grid gap-4 sm:grid-cols-2">
-        {menuItems.map((item) => (
+        {mainNavigationItems.map((item) => (
           <MenuCard
-            key={item.title}
-            title={item.title}
-            description={item.description}
+            key={item.id}
+            title={item.label}
+            description={item.description || ""}
             href={item.href}
-            icon={item.icon}
+            icon={<item.icon className="h-6 w-6" />}
           />
         ))}
       </div>

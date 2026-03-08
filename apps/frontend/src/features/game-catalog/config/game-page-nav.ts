@@ -1,36 +1,11 @@
-import type { LucideIcon } from "lucide-react";
-import { BarChart3, Gamepad2, House, LogIn, Settings } from "lucide-react";
+import type { NavigationItem } from "@/shared/config/navigation";
+import { navigationConfig } from "@/shared/config/navigation";
 
-export type QuickNavItem = {
-  href: string;
-  label: string;
-  icon: LucideIcon;
-};
+export type QuickNavItem = NavigationItem;
 
-export const gamePageQuickNavItems: QuickNavItem[] = [
-  {
-    href: "/",
-    label: "Home",
-    icon: House,
-  },
-  {
-    href: "/games",
-    label: "Games",
-    icon: Gamepad2,
-  },
-  {
-    href: "/statistics",
-    label: "Statistics",
-    icon: BarChart3,
-  },
-  {
-    href: "/settings",
-    label: "Settings",
-    icon: Settings,
-  },
-  {
-    href: "/auth",
-    label: "Authorization",
-    icon: LogIn,
-  },
-];
+/**
+ * Quick navigation items for game pages.
+ * All items including home for page navigation purposes.
+ */
+export const gamePageQuickNavItems: readonly QuickNavItem[] = navigationConfig;
+
