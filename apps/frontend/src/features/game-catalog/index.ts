@@ -18,5 +18,3 @@ export {
   GameCatalogSortControls,
 } from "./ui";
 
-export { gamePageQuickNavItems, type QuickNavItem } from "./config/game-page-nav";
-

@@ -11,7 +11,7 @@ export function HomeMenu() {
           <MenuCard
             key={item.id}
             title={item.label}
-            description={item.description || ""}
+            description={item.description ?? "Navigate to this section"}
             href={item.href}
             icon={<item.icon className="h-6 w-6" />}
           />

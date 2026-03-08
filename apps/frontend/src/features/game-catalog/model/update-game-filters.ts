@@ -34,9 +34,9 @@ export function updateGameFilters(
       return { ...prev, difficulty: nextDifficulty };
     }
 
-    default: {
-      const exhaustiveCheck: never = sectionId;
-      return exhaustiveCheck;
-    }
+    default:
+      // Exhaustive check: this should never happen at runtime
+      // TypeScript will error if we add a new filter type and forget to handle it
+      throw new Error(`Unknown filter section: ${String(sectionId)}`);
   }
 }

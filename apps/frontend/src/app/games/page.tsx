@@ -16,9 +16,9 @@ import {
   GameCatalogGrid,
   GameCatalogSearch,
   GameCatalogSortControls,
-  gamePageQuickNavItems,
   updateGameFilters,
 } from "@/features/game-catalog";
+import { navigationConfig } from "@/shared/config";
 import { IconNavButton, SidebarToggleButton } from "@/shared/ui";
 
 const defaultSortOption: GameSortOption = "title-asc";
@@ -99,7 +99,7 @@ export default function GamesPage() {
             </div>
 
             <nav className="flex items-center gap-2" aria-label="Quick navigation">
-              {gamePageQuickNavItems.map((item) => {
+              {navigationConfig.map((item) => {
                 const Icon = item.icon;
 
                 return (
