@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { BarChart3, Gamepad2, House, LogIn, Settings } from "lucide-react";
 
 export type NavigationItem = {
@@ -7,7 +6,6 @@ export type NavigationItem = {
   label: string;
   description?: string;
   icon: React.ComponentType<{ className?: string }>;
-  iconElement?: ReactNode;
 };
 
 /**
